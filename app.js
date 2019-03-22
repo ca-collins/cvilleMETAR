@@ -3,7 +3,8 @@ const express = require('express'),
       port = process.env.PORT || 3000,
       request = require('request'),
       url     = "https://wx.wearebraid.com/stations/",
-      secret  = {'Authorization': "3ded1a32715f7eb8423918ff982950b4"};
+      secret  = {'Authorization': "3ded1a32715f7eb8423918ff982950b4"},
+      codes = ["kcho", "kvbw", "kshd", "kgve", "kiad"];
       
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -13,7 +14,7 @@ function fixParseJSON (body) {
   return JSON.parse(body.replace(/-/g, ""))
 }
 
-//The route of repeating requests! I'm sure there is a better way to do this.
+// The route of repeating requests! I'm sure there is a better way to do this using promises or something?
 app.get('/', function (req, res){
   var stationArray = [];
   request(url + 'kcho', secret, function (error, response, body) {
