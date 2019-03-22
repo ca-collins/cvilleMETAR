@@ -1,6 +1,6 @@
 const express = require('express'),
       app     = express(),
-      port = 3000,
+      port = process.env.PORT || 3000,
       request = require('request'),
       url     = "https://wx.wearebraid.com/stations/",
       secret  = {'Authorization': "3ded1a32715f7eb8423918ff982950b4"};
