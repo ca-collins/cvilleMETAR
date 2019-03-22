@@ -3,9 +3,8 @@ const express = require('express'),
       port = process.env.PORT || 3000,
       request = require('request'),
       url     = "https://wx.wearebraid.com/stations/",
-      secret  = {'Authorization': "3ded1a32715f7eb8423918ff982950b4"},
-      codes = ["kcho", "kvbw", "kshd", "kgve", "kiad"];
-      
+      secret  = {'Authorization': "3ded1a32715f7eb8423918ff982950b4"};
+            
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
