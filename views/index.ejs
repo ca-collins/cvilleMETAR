@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="/main.css">
+
+        <title>METAR</title>
+    </head>
+    <body>    
+
+        <div class="container-fluid text-center text-align-bottom">
+                <table class="table">
+                    <colgroup>
+                        <col class="table-active"></col>
+                        <col></col>
+                        <col class="table-active"></col>
+                        <col></col>
+                        <col class="table-active"></col>
+                    </colgroup>
+                    <thead class="">
+                        <tr>
+                        <% stationArray.forEach(station => { %>       
+                            <th scope="col" class="display-4">
+                                <%= station.Station %>
+                            </th>
+                        <% }); %>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <% stationArray.forEach(station => { %>
+                        <td>
+                            <p class="h3"><%= station.CloudList[0][0] %> @ <%= station.CloudList[0][1] %>k ft </p>
+                            <% if(station.CloudList.length >= 2) { %>
+
+                            <p class="h3"> <%= station.CloudList[1][0] %> @ <%= station.CloudList[1][1] %>k ft </p>
+                                
+                            <% } %>
+                            <p class="h4 text-muted">CLOUD COVER</p>
+                        </td>
+                        <% }); %>
+                        </tr>
+                        <tr>
+                        <% stationArray.forEach(station => { %>
+                        <td>
+                            <p class="h3"><%= station.WindSpeed %> kts | <%= station.WindSpeed %>&#176;</p>
+                            <p class="h4 text-muted">WIND</p>
+                        </td>
+                        <% }); %>
+                        </tr>
+                        <tr>
+                        <% stationArray.forEach(station => { %>
+                            <% if(station.Visibility < 9) { %>
+                            <td>
+                                    <p class="h3"><%= station.Visibility %> miles</p>
+                                    <h2 class="h4 text-muted">VISIBILITY</h2>
+                            
+                            </td>
+                            <% } %>
+                        <% }); %>
+                        </tr>
+                        <tr>
+                        <% stationArray.forEach(station => { %>
+                        <td>
+                            <% if(station.Visibility < 12) { %>
+                                <p class="h3"><%= station.Temperature %>&#176;C</p>
+                                <h2 class="h4 text-muted">TEMERATURE</h2>
+                            <% } %>
+                        </td>
+                        <% }); %>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>  
+        </div>
+
+
+
+
+
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html> 

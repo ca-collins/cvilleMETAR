@@ -1,0 +1,57 @@
+<div class="container-fluid text-center align-text-bottom">
+        <div class="col">
+            <div class="row mb-5 mt-5">
+            <% stationArray.forEach(station => { %>       
+                <div class="col">
+                        <h1 class="display-4"><%= station.Station %></h1>
+                </div>
+            <% }); %>
+            </div>
+            <div class="row mb-5">
+                <% stationArray.forEach(station => { %>       
+                <div class="col">
+                    <p class="h3"><%= station.CloudList[0][0] %> @ <%= station.CloudList[0][1] %>k ft </p>
+
+                    <% if(station.CloudList.length >= 2) { %>
+
+                    <p class="h3"> <%= station.CloudList[1][0] %> @ <%= station.CloudList[1][1] %>k ft </p>
+                    
+                    <% } %>
+                    <h2 class="h4 text-muted">CLOUD COVER</h2>
+                </div>
+                <% }); %>
+            </div>
+            <div class="row mb-5">
+                <% stationArray.forEach(station => { %>       
+                <div class="col">
+                    <p class="h3"><%= station.WindSpeed %> kts | <%= station.WindSpeed %>&#176;</p>
+                    <h2 class="h4 text-muted">WIND</h2>
+                </div>
+                <% }); %>
+            </div>
+            <div class="row mb-5">
+                <% stationArray.forEach(station => { %>       
+                <div class="col">
+                    <% if(station.Visibility < 12) { %>
+                    <p class="h3"><%= station.Visibility %> miles</p>
+                    <h2 class="h4 text-muted">VISIBILITY</h2>
+                    <% } %>
+                </div>
+                <% }); %>
+            </div>
+            <div class="row mb-5">
+                <% stationArray.forEach(station => { %>       
+                <div class="col">
+                    <p class="h3"><%= station.Temperature %>&#176;C</p>
+                    <h2 class="h4 text-muted">TEMERATURE</h2>
+                </div>
+                <% }); %>
+            </div>
+            
+                
+          
+                        
+               
+                
+        </div>  
+    </div>
