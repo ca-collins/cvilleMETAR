@@ -3,18 +3,19 @@
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
+        <meta http-equiv="refresh" content="15"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="/main.css">
 
-        <title>METAR</title>
+        <title>Cville METAR</title>
     </head>
     <body>    
 
         <div class="container-fluid text-center text-align-bottom">
-                <table class="table">
+                <table class="table table-borderless mt-3 text-success">
                     <colgroup>
                         <col class="table-active"></col>
                         <col></col>
@@ -22,10 +23,10 @@
                         <col></col>
                         <col class="table-active"></col>
                     </colgroup>
-                    <thead class="">
+                    <thead>
                         <tr>
                         <% stationArray.forEach(station => { %>       
-                            <th scope="col" class="display-4">
+                            <th scope="col" class="display-4 pt-4 pb-4">
                                 <%= station.Station %>
                             </th>
                         <% }); %>
@@ -34,43 +35,51 @@
                     <tbody>
                         <tr>
                         <% stationArray.forEach(station => { %>
-                        <td>
-                            <p class="h3"><%= station.CloudList[0][0] %> @ <%= station.CloudList[0][1] %>k ft </p>
-                            <% if(station.CloudList.length >= 2) { %>
-
-                            <p class="h3"> <%= station.CloudList[1][0] %> @ <%= station.CloudList[1][1] %>k ft </p>
-                                
-                            <% } %>
-                            <p class="h4 text-muted">CLOUD COVER</p>
-                        </td>
-                        <% }); %>
-                        </tr>
-                        <tr>
-                        <% stationArray.forEach(station => { %>
-                        <td>
-                            <p class="h3"><%= station.WindSpeed %> kts | <%= station.WindSpeed %>&#176;</p>
-                            <p class="h4 text-muted">WIND</p>
-                        </td>
-                        <% }); %>
-                        </tr>
-                        <tr>
-                        <% stationArray.forEach(station => { %>
-                            <% if(station.Visibility < 9) { %>
-                            <td>
-                                    <p class="h3"><%= station.Visibility %> miles</p>
-                                    <h2 class="h4 text-muted">VISIBILITY</h2>
+                            <td class="pt-5">
+                            <% station.CloudList.forEach(alert => { %>
+                                <% if(alert[0] === "BKN" || alert[0] === "OVC") { %>               
+                                <p class="h4 table-warning text-danger"><%= alert[0] %> @ <%= alert[1] %>k ft </p>
+                                <% } else { %>
+                                    <p class="h4"><%= alert[0] %> @ <%= alert[1] %>k ft </p> 
+                                <% } %>                   
+                            <% }); %>
                             
+                            </td>                
+                        <% }); %>
+                        </tr>
+                        <tr id="noTopBorder">
+                            <% stationArray.forEach(station => { %>
+                            <td>
+                                    <p class="h5 mt-2 text-black-50 table-borderless pb-4">CLOUD COVER</p>
                             </td>
-                            <% } %>
+                            <% }); %>
+                        </tr>
+                        <tr>
+                        <% stationArray.forEach(station => { %>
+                        <td class="pt-4 pb-4">
+                            <p class="h4"><%= station.WindSpeed %> kts | <%= station.WindSpeed %>&#176;</p>
+                            <p class="h5 mt-4 text-black-50">WIND</p>
+                        </td>
                         <% }); %>
                         </tr>
                         <tr>
                         <% stationArray.forEach(station => { %>
-                        <td>
-                            <% if(station.Visibility < 12) { %>
-                                <p class="h3"><%= station.Temperature %>&#176;C</p>
-                                <h2 class="h4 text-muted">TEMERATURE</h2>
-                            <% } %>
+                            
+                            <td class="pt-4 pb-4">
+                                    <% if(station.Visibility < 5) { %>
+                                        <p class="h4 table-warning text-danger"><%= station.Visibility %> miles</p>
+                                    <% } else { %>
+                                            <p class="h4"><%= station.Visibility %> miles</p>                                                
+                                    <% } %>
+                                    <p class="h5 mt-4 text-black-50">VISIBILITY</p>                            
+                            </td>                         
+                        <% }); %>
+                        </tr>
+                        <tr>
+                        <% stationArray.forEach(station => { %>
+                        <td class="pt-4 pb-4">
+                                <p class="h4"><%= station.Temperature %>&#176;C</p>
+                                <p class="h5 mt-4 text-black-50">TEMERATURE</p>
                         </td>
                         <% }); %>
                         </tr>
