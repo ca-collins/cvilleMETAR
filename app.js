@@ -1,19 +1,19 @@
-const express = require('express');
-const app = express();
-const port = 3000;
-const request = require('request');
-app.set("view engine", "ejs");
-const url     = "https://wx.wearebraid.com/stations/"
-      secret  = {'Authorization': "3ded1a32715f7eb8423918ff982950b4"}
+const express = require('express'),
+      app     = express(),
+      port = 3000,
+      request = require('request'),
+      url     = "https://wx.wearebraid.com/stations/",
+      secret  = {'Authorization': "3ded1a32715f7eb8423918ff982950b4"};
       
+app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
-
+// Removes hyphens then parses
 function fixParseJSON (body) {
   return JSON.parse(body.replace(/-/g, ""))
 }
 
-
+//The route of repeating requests! I'm sure there is a better way to do this.
 app.get('/', function (req, res){
   var stationArray = [];
   request(url + 'kcho', secret, function (error, response, body) {
@@ -40,7 +40,6 @@ app.get('/', function (req, res){
     
   })
 })
-
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 

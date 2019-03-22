@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+    
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
@@ -12,10 +13,10 @@
 
         <title>Cville METAR</title>
     </head>
-    <body>    
 
+    <body>    
         <div class="container-fluid text-center text-align-bottom">
-                <table class="table table-borderless mt-3 text-success">
+                <table class="table table-borderless mt-3">
                     <colgroup>
                         <col class="table-active"></col>
                         <col></col>
@@ -26,7 +27,7 @@
                     <thead>
                         <tr>
                         <% stationArray.forEach(station => { %>       
-                            <th scope="col" class="display-4 pt-4 pb-4">
+                            <th scope="col" class="display-4 pt-4 pb-4 text-success">
                                 <%= station.Station %>
                             </th>
                         <% }); %>
@@ -38,7 +39,7 @@
                             <td class="pt-5">
                             <% station.CloudList.forEach(alert => { %>
                                 <% if(alert[0] === "BKN" || alert[0] === "OVC") { %>               
-                                <p class="h4 table-warning text-danger"><%= alert[0] %> @ <%= alert[1] %>k ft </p>
+                                <p class="h4 table-warning"><%= alert[0] %> @ <%= alert[1] %>k ft </p>
                                 <% } else { %>
                                     <p class="h4"><%= alert[0] %> @ <%= alert[1] %>k ft </p> 
                                 <% } %>                   
@@ -67,7 +68,7 @@
                             
                             <td class="pt-4 pb-4">
                                     <% if(station.Visibility < 5) { %>
-                                        <p class="h4 table-warning text-danger"><%= station.Visibility %> miles</p>
+                                        <p class="h4 table-warning"><%= station.Visibility %> miles</p>
                                     <% } else { %>
                                             <p class="h4"><%= station.Visibility %> miles</p>                                                
                                     <% } %>
@@ -87,16 +88,6 @@
                 </table>
             </div>  
         </div>
-
-
-
-
-
-
-
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
+    </body>
 
 </html> 

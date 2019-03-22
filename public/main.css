@@ -5,3 +5,7 @@
 #noTopBorder {
     border-top: none;
 }
+
+.display-4 {
+    font-weight: bold;
+}
